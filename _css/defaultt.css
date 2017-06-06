@@ -1,0 +1,123 @@
+.top-menu {
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	height: 80px;
+	margin: 3px;
+	position: absolute;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #aeb0b3;
+	overflow: auto;
+	padding: 5px; /* Поля вокруг текста */
+  background: #ffffff; 
+  color: #3366ff;
+}
+
+.project-detail{
+	left: 0px;
+	top: 96px;
+	width: 780px;
+	height: 397px;
+	margin: 3px;
+	position: absolute;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #aeb0b3;
+	overflow: auto;
+	padding: 5px; /* Поля вокруг текста */
+  background: #ffffff; 
+  color: #3366ff;
+}
+
+.materials{
+	left: 0px;
+	top: 510px;
+	width: 250px;
+	bottom: 10px;
+	margin: 3px;
+	position: absolute;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #aeb0b3;
+	overflow: auto;
+	padding: 5px; /* Поля вокруг текста */
+  background: #ffffff; 
+  color: #3366ff;
+}
+.works{
+	left: 266px;
+	top: 510px;
+	width: 250px;
+	bottom: 10px;
+	margin: 3px;
+	position: absolute;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #aeb0b3;
+	overflow: auto;
+	padding: 5px; /* Поля вокруг текста */
+  background: #ffffff; 
+  color: #3366ff;
+}
+.pipl{
+	left: 531px;
+	top: 510px;
+	width: 250px;
+	bottom: 10px;
+	margin: 3px;
+	position: absolute;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #aeb0b3;
+	overflow: auto;
+	padding: 5px; /* Поля вокруг текста */
+  background: #ffffff; 
+  color: #3366ff;
+}
+.workflow{
+	left: 797px;
+	top: 96px;
+	width: 350px;
+	bottom: 10px;
+	margin: 3px;
+	position: absolute;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #aeb0b3;
+	overflow: auto;
+	padding: 5px; /* Поля вокруг текста */
+  background: #ffffff; 
+  color: #3366ff;
+}
+
+.close {float: right;}
+
+table {
+    border-collapse: collapse;
+    cursor: pointer;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #aeb0b3;
+    font: 8pt Arial;
+    color: Black;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li {
+    display: inline-block;
+}
+
