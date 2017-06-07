@@ -11,7 +11,7 @@
 	<div class="top-menu">
 		
 	</div>
-	<div class="all-projects" ng-controller="AllProjectsCtrl">
+	<div class="all-projects" ng-controller="AllProjectsCtrl" ng-show="showWorksObj.visible">
  		<table>
 			<thead>
 				<th>ID</th>
@@ -45,10 +45,10 @@
 		</table>		
 		</div>
 	<main>
-		<div style="display: none;">
-			<div class="project-detail" ng-controller="projectCtrl">
+		<div ng-controller="projectCtrl" ng-show="!showWorksObj.visible">
+			<div class="project-detail">
 				<table class="detail" width=100%>
-					<tr><td colspan="4" class="caption"><ul><li>Детализация проекта: #{{project[0].id}}</li><li class="close" alt="Закрыть (Esq)">x</li></td></tr>
+					<tr><td colspan="4" class="caption"><ul><li>Детализация проекта: #{{project[0].id}}</li><li class="close" alt="Закрыть (Esq)" ng-click="projectView();">x</li></td></tr>
 					<tr><td><i>Документ основание</i></td><td>АА-327</td><td><i>Внутренний номер проекта</i></td><td>{{project[0].id}}</td></tr>
 					<tr><td colspan=4><b>Информация о клиенте</b></td></tr>
 					<tr><td><i>Юр. лицо</i></td><td><a href="#">{{project[0].firma}}</a></td><td><i>Адрес</i></td><td><a href="#">{{project[0].addr}}</a></td></tr>
