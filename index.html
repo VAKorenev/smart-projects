@@ -11,35 +11,70 @@
 	<div class="top-menu">
 		
 	</div>
+	<div class="all-projects" ng-controller="AllProjectsCtrl">
+ 		<table>
+			<thead>
+				<th>ID</th>
+				<th>Код проекта</th>
+				<th>Номер заявки</th>
+				<th>ЮЛ</th>
+				<th>Адрес</th>
+				<th>Доход</th>
+				<th>Затраты</th>
+				<th ng-click="sort('name')">РП</th>
+			</thead>
+			<tbody>
+			<tr>
+				<td colspan=8><input class="search-input"	type="text" ng-model="searchString" /></td>
+			</tr>
+			<tr ng-repeat="project in resultProjects = (projects | orderBy:sortField:reverse | filter:searchString)" ng-click="projectView(project.id);">
+					<td>{{project.id}}</td>
+					<td>Отсутствует</td>
+					<td>Отсутствует</td>
+					<td>{{project.firma}}</td>
+					<td>{{project.addr}}</td>
+					<td>0</td>
+					<td>0</td>
+					<td>{{project.name}}</td>
+				</tr>
+				<tr>
+					<td colspan=7>Общее количество проектов:</td>
+					<td colspan=7>{{resultProjects.length}}</td>
+				</tr>
+			</tbody>
+		</table>		
+		</div>
 	<main>
-		<div class="project-detail" ng-controller="projectCtrl">
-			<table class="detail" width=100%>
-				<tr><td colspan="4" class="caption"><ul><li>Детализация проекта: #{{project[0].id}}</li><li class="close" alt="Закрыть (Esq)">x</li></td></tr>
-				<tr><td><i>Документ основание</i></td><td>АА-327</td><td><i>Внутренний номер проекта</i></td><td>{{project[0].id}}</td></tr>
-				<tr><td colspan=4><b>Информация о клиенте</b></td></tr>
-				<tr><td><i>Юр. лицо</i></td><td><a href="#">{{project[0].firma}}</a></td><td><i>Адрес</i></td><td><a href="#">{{project[0].addr}}</a></td></tr>
-				<tr><td><i>Объем услуг</i></td><td colspan=3>- КПД 10Мб<a href="#" class="close">Изменить</a></tr>
-				<tr><td><i>Инсталляция, руб.</i></td><td><a href="#">{{project[0].install}}</a></td><td><i>Абонентская плата, руб.</i></td><td><a href="#">{{project[0].abon}}</a></td></tr>
-				<tr><td colspan=4><b>Аренда ресурсов</b></td></tr>
-				<tr><td><i><i>Оператор</i></i></td><td><a href="#">Мегафон</a></td><td><i>Объект аренды</i></td><td><a href="#">КПД 10Мб</a></td></tr>
-				<tr><td><i>Инсталляция, руб.</i></td><td><a href="#">{{project[0].arenda_install}}</a></td><td><i>Абонентская плата, руб.</i></td><td><a href="#">{{project[0].arenda_abon}}</a></td></tr>
-				<tr><td colspan=4><b>Операционные затраты</b></td></tr>
-				<tr><td><i>Оборудование и материалы, руб.</i></td><td><a href="#">{{project[0].material_price}}</a></td><td><i>Работы, руб.</i></td><td><a href="#">{{project[0].work_price}}</a></td></tr>
-				<tr><td colspan=4><b>Комментарии по пректу: <a href="#" class="close">См. комментарии</a></b></td></tr>
-			</table>
+		<div style="display: none;">
+			<div class="project-detail" ng-controller="projectCtrl">
+				<table class="detail" width=100%>
+					<tr><td colspan="4" class="caption"><ul><li>Детализация проекта: #{{project[0].id}}</li><li class="close" alt="Закрыть (Esq)">x</li></td></tr>
+					<tr><td><i>Документ основание</i></td><td>АА-327</td><td><i>Внутренний номер проекта</i></td><td>{{project[0].id}}</td></tr>
+					<tr><td colspan=4><b>Информация о клиенте</b></td></tr>
+					<tr><td><i>Юр. лицо</i></td><td><a href="#">{{project[0].firma}}</a></td><td><i>Адрес</i></td><td><a href="#">{{project[0].addr}}</a></td></tr>
+					<tr><td><i>Объем услуг</i></td><td colspan=3>- КПД 10Мб<a href="#" class="close">Изменить</a></tr>
+					<tr><td><i>Инсталляция, руб.</i></td><td><a href="#">{{project[0].install}}</a></td><td><i>Абонентская плата, руб.</i></td><td><a href="#">{{project[0].abon}}</a></td></tr>
+					<tr><td colspan=4><b>Аренда ресурсов</b></td></tr>
+					<tr><td><i><i>Оператор</i></i></td><td><a href="#">Мегафон</a></td><td><i>Объект аренды</i></td><td><a href="#">КПД 10Мб</a></td></tr>
+					<tr><td><i>Инсталляция, руб.</i></td><td><a href="#">{{project[0].arenda_install}}</a></td><td><i>Абонентская плата, руб.</i></td><td><a href="#">{{project[0].arenda_abon}}</a></td></tr>
+					<tr><td colspan=4><b>Операционные затраты</b></td></tr>
+					<tr><td><i>Оборудование и материалы, руб.</i></td><td><a href="#">{{project[0].material_price}}</a></td><td><i>Работы, руб.</i></td><td><a href="#">{{project[0].work_price}}</a></td></tr>
+					<tr><td colspan=4><b>Комментарии по пректу: <a href="#" class="close">См. комментарии</a></b></td></tr>
+				</table>
+			</div>
+			<div class="materials">
+
+			</div>
+			<div class="works">
+
+			</div>
+			<div class="pipl">
+
+			</div>
+			<div class="workflow">
+
+			</div>
 		</div>
 	</main>
-	<div class="materials">
-		
-	</div>
-	<div class="works">
-		
-	</div>
-	<div class="pipl">
-		
-	</div>
-	<div class="workflow">
-		
-	</div>
 </body>
 </html>
