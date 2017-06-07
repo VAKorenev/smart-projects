@@ -5,20 +5,21 @@
 	<title>Отдел развития [проекты]</title>
 	<script src="_lib/angular.js"></script>
 	<script src="_js/app.js"></script>
+	<!-- <script src="_lib/ya-map-2.0.min.js"></script> -->
 	<link rel="stylesheet" href="_css/defaultt.css">
 </head>
 <body>
 	<div class="top-menu">
 		
 	</div>
-	<div class="all-projects" ng-controller="AllProjectsCtrl" ng-show="showWorksObj.visible">
+	<div class="all-projects" ng-controller="AllProjectsCtrl" ng-show="dataFctrl.visible">
  		<table>
 			<thead>
-				<th>ID</th>
+				<th ng-click="sort('id')">ID</th>
 				<th>Код проекта</th>
 				<th>Номер заявки</th>
-				<th>ЮЛ</th>
-				<th>Адрес</th>
+				<th ng-click="sort('firma')">ЮЛ</th>
+				<th ng-click="sort('addr')">Адрес</th>
 				<th>Доход</th>
 				<th>Затраты</th>
 				<th ng-click="sort('name')">РП</th>
@@ -45,7 +46,7 @@
 		</table>		
 		</div>
 	<main>
-		<div ng-controller="projectCtrl" ng-show="!showWorksObj.visible">
+		<div ng-controller="projectCtrl" ng-show="!dataFctrl.visible">
 			<div class="project-detail">
 				<table class="detail" width=100%>
 					<tr><td colspan="4" class="caption"><ul><li>Детализация проекта: #{{project[0].id}}</li><li class="close" alt="Закрыть (Esq)" ng-click="projectView();">x</li></td></tr>
@@ -62,17 +63,51 @@
 					<tr><td colspan=4><b>Комментарии по пректу: <a href="#" class="close">См. комментарии</a></b></td></tr>
 				</table>
 			</div>
-			<div class="materials">
-
+			<div class="materials" ng-controller="materialsCtrl">
+				<table>
+					<thead>
+						<th>Наименование</th>
+						<th>Стоимость, руб.</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="material in materials">
+							<td>{{material.NAME}}</td>
+							<td>{{material.COST}}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-			<div class="works">
-
+			<div class="works" ng-controller="worksCtrl">
+				<table>
+					<thead>
+						<th>Наименование</th>
+						<th>Стоимость, руб.</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="work in works">
+							<td>{{work.NAME}}</td>
+							<td>{{work.COST}}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-			<div class="pipl">
-
+			<div class="pipl" ng-controller="piplsCtrl">
+				<table>
+					<thead>
+						<th>№</th>
+						<th>Фамилия</th>
+						<th>Фамилия</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="pipl in pipls">
+							<td>{{pipl.ID}}</td>
+							<td>{{pipl.ONAME}}</td>
+							<td><a href="#">-</a></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			<div class="workflow">
-
 			</div>
 		</div>
 	</main>

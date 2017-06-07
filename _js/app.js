@@ -2,17 +2,18 @@
 
 var projectApp = angular.module('projectApp',[]);
 
-projectApp.controller('AllProjectsCtrl',['$scope','$http','showWorksObj', function($scope,$http, showWorksObj){
+/*Блок таблица - перечень проектов*/
+projectApp.controller('AllProjectsCtrl',['$scope','$http','dataFctrl', function($scope,$http, dataFctrl){
 
-	$scope.showWorksObj = showWorksObj;
+	$scope.dataFctrl = dataFctrl;
 
 	$http.get('_data/projects.data.json')
 	.then(function(response){
 		$scope.projects = response.data;
-		console.log("Data:", response.data);
+		// console.log("Data:", response.data);
 	});
 	$scope.projectView = function(id){
-		$scope.showWorksObj.visible = false;
+		$scope.dataFctrl.visible = false;
 	};
 		
 	$scope.sortField = undefined;
@@ -27,13 +28,15 @@ projectApp.controller('AllProjectsCtrl',['$scope','$http','showWorksObj', functi
 		}
 	};
 }]);
+/*Конец блока таблица - перечень проектов*/
 
-projectApp.controller('projectCtrl',['$scope', '$http', 'showWorksObj', function($scope, $http, showWorksObj){
+/* Отображение блока с информацией по проекту*/
+projectApp.controller('projectCtrl',['$scope', '$http', 'dataFctrl', function($scope, $http, dataFctrl){
 	
-	$scope.showWorksObj = showWorksObj;
+	$scope.dataFctrl = dataFctrl;
 
 	$scope.projectView = function(){
-		$scope.showWorksObj.visible = true;
+		$scope.dataFctrl.visible = true;
 	};
 
 	$http.get('_data/project.data.json')
@@ -42,9 +45,42 @@ projectApp.controller('projectCtrl',['$scope', '$http', 'showWorksObj', function
 		// console.log("Data:", response.data);
 	});
 }]);
+/* Конец блока: Отображение блока с информацией по проекту*/
+/* Блок Отображение расходников и материалов для проекта*/
+projectApp.controller('materialsCtrl',['$scope', '$http', 'dataFctrl', function($scope, $http, dataFctrl){
+	$scope.dataFctrl = dataFctrl;
+	$http.get('_data/materials.data.json')
+	.then(function(response){
+		$scope.materials = response.data;
+		// console.log("Data materials:", response.data);
+	});
+}]);
+/* Конец блока Отображение расходников и материалов для проекта*/
+/*Блок отображения работ по проекту*/
 
-projectApp.factory('showWorksObj',function(){
+/*Конец блока отображения работ по проекту*/
+projectApp.controller('worksCtrl',['$scope', '$http', 'dataFctrl', function($scope, $http, dataFctrl){
+	$scope.dataFctrl = dataFctrl;
+	$http.get('_data/works.data.json')
+	.then(function(response){
+		$scope.works = response.data;
+		// console.log("Data works:", response.data);
+	});
+}]);
+/*Блок отображения сотрудников учавствующих в проекте*/
+projectApp.controller('piplsCtrl',['$scope', '$http', 'dataFctrl', function($scope, $http, dataFctrl){
+	$scope.dataFctrl = dataFctrl;
+	$http.get('_data/pipls.data.json')
+	.then(function(response){
+		$scope.pipls = response.data;
+		// console.log("Data works:", response.data);
+	});
+}]);
+/*Конец блока отображения сотрудников учавствующих в проекте*/
+/*Блок фабрика для обмена данными между контролами*/
+projectApp.factory('dataFctrl',function(){
 	return {
 		visible: true
 	};
 });
+/*Конец блока фабрика для обмена данными между контролами*/
