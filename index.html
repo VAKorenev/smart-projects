@@ -3,10 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Отдел развития [проекты]</title>
-	<script src="_lib/angular.js"></script>
+<!-- 	<script src="_lib/angular.min.js"></script>
 	<script src="_lib/angular-route.min.js"></script>
-	<script src="_js/app.js"></script>
+ -->	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
 	<!-- <script src="_lib/ya-map-2.0.min.js"></script> -->
+	<script src="_js/app.js"></script>
 	<link rel="stylesheet" href="_css/defaultt.css">
 </head>
 <body>
@@ -53,7 +55,7 @@
 					<tr><td colspan="4" class="caption"><ul><li>Детализация проекта: #{{project[0].id}}</li><li class="close" alt="Закрыть (Esq)" ng-click="projectView();">x</li></td></tr>
 					<tr><td><i>Документ основание</i></td><td>АА-327</td><td><i>Внутренний номер проекта</i></td><td>{{project[0].id}}</td></tr>
 					<tr><td colspan=4><b>Информация о клиенте</b></td></tr>
-					<tr><td><i>Юр. лицо</i></td><td><a href="/#organization">{{project[0].firma}}</a></td><td><i>Адрес</i></td><td><a href="/#map">{{project[0].addr}}</a></td></tr>
+					<tr><td><i>Юр. лицо</i></td><td><a href="#organization">{{project[0].firma}}</a></td><td><i>Адрес</i></td><td><a href="#map">{{project[0].addr}}</a></td></tr>
 					<tr><td><i>Объем услуг</i></td><td colspan=3>- КПД 10Мб<a href="#" class="close">Изменить</a></tr>
 					<tr><td><i>Инсталляция, руб.</i></td><td><a href="#">{{project[0].install}}</a></td><td><i>Абонентская плата, руб.</i></td><td><a href="#">{{project[0].abon}}</a></td></tr>
 					<tr><td colspan=4><b>Аренда ресурсов</b></td></tr>
@@ -61,7 +63,7 @@
 					<tr><td><i>Инсталляция, руб.</i></td><td><a href="#">{{project[0].arenda_install}}</a></td><td><i>Абонентская плата, руб.</i></td><td><a href="#">{{project[0].arenda_abon}}</a></td></tr>
 					<tr><td colspan=4><b>Операционные затраты</b></td></tr>
 					<tr><td><i>Оборудование и материалы, руб.</i></td><td><a href="#">{{project[0].material_price}}</a></td><td><i>Работы, руб.</i></td><td><a href="#">{{project[0].work_price}}</a></td></tr>
-					<tr><td colspan=4><b>Комментарии по пректу: <a href="#" class="close">См. комментарии</a></b></td></tr>
+					<tr><td colspan=4><b>Комментарии по пректу: <a href="map.html" class="close">См. комментарии</a></b></td></tr>
 				</table>
 			</div>
 			<div class="materials" ng-controller="materialsCtrl">

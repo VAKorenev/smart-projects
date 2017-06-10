@@ -15,7 +15,7 @@ projectApp.config(['$routeProvider', function($routeProvider){
 		controller: 'mapCtrl'
 	}).
 	otherwise({
-		redirectTo: '/organization'
+		redirectTo: '/'
 	});
 }]);
 
