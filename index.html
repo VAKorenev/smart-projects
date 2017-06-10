@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Отдел развития [проекты]</title>
 	<script src="_lib/angular.js"></script>
+	<script src="_lib/angular-route.min.js"></script>
 	<script src="_js/app.js"></script>
 	<!-- <script src="_lib/ya-map-2.0.min.js"></script> -->
 	<link rel="stylesheet" href="_css/defaultt.css">
@@ -52,7 +53,7 @@
 					<tr><td colspan="4" class="caption"><ul><li>Детализация проекта: #{{project[0].id}}</li><li class="close" alt="Закрыть (Esq)" ng-click="projectView();">x</li></td></tr>
 					<tr><td><i>Документ основание</i></td><td>АА-327</td><td><i>Внутренний номер проекта</i></td><td>{{project[0].id}}</td></tr>
 					<tr><td colspan=4><b>Информация о клиенте</b></td></tr>
-					<tr><td><i>Юр. лицо</i></td><td><a href="#">{{project[0].firma}}</a></td><td><i>Адрес</i></td><td><a href="#">{{project[0].addr}}</a></td></tr>
+					<tr><td><i>Юр. лицо</i></td><td><a href="/#organization">{{project[0].firma}}</a></td><td><i>Адрес</i></td><td><a href="/#map">{{project[0].addr}}</a></td></tr>
 					<tr><td><i>Объем услуг</i></td><td colspan=3>- КПД 10Мб<a href="#" class="close">Изменить</a></tr>
 					<tr><td><i>Инсталляция, руб.</i></td><td><a href="#">{{project[0].install}}</a></td><td><i>Абонентская плата, руб.</i></td><td><a href="#">{{project[0].abon}}</a></td></tr>
 					<tr><td colspan=4><b>Аренда ресурсов</b></td></tr>
@@ -107,8 +108,18 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="workflow">
-			</div>
+			<div class="workflow" ng-view></div>
+			
+			<script type="text/ng-template" id="organization.html">
+				<h2>Изменяем данные организации</h2>
+				<input type="text">{{message}}
+			</script>
+			
+			<script type="text/ng-template" id="map.html">
+				<h2>Отображаем карту с объектом</h2>
+				{{message}}
+			</script>
+		
 		</div>
 	</main>
 </body>
