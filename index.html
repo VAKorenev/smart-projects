@@ -3,11 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Отдел развития [проекты]</title>
-<!-- 	<script src="_lib/angular.min.js"></script>
+	<script src="_lib/angular.min.js"></script>
 	<script src="_lib/angular-route.min.js"></script>
- -->	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
-	<!-- <script src="_lib/ya-map-2.0.min.js"></script> -->
 	<script src="_js/app.js"></script>
 	<link rel="stylesheet" href="_css/defaultt.css">
 </head>
@@ -67,45 +64,49 @@
 				</table>
 			</div>
 			<div class="materials" ng-controller="materialsCtrl">
-				<table>
+				<table wifth=100%>
 					<thead>
 						<th>Наименование</th>
 						<th>Стоимость, руб.</th>
+						<th>Уд.</th>
 					</thead>
 					<tbody>
 						<tr ng-repeat="material in materials">
 							<td>{{material.NAME}}</td>
 							<td>{{material.COST}}</td>
+							<td><a href="#">x</a></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			<div class="works" ng-controller="worksCtrl">
-				<table>
+				<table wifth=100%>
 					<thead>
 						<th>Наименование</th>
 						<th>Стоимость, руб.</th>
+						<th>Уд.</th>
 					</thead>
 					<tbody>
 						<tr ng-repeat="work in works">
 							<td>{{work.NAME}}</td>
 							<td>{{work.COST}}</td>
+							<td><a href="#">x</a></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			<div class="pipl" ng-controller="piplsCtrl">
-				<table>
+				<table wifth=100%>
 					<thead>
 						<th>№</th>
 						<th>Фамилия</th>
-						<th>Фамилия</th>
+						<th>Уд.</th>
 					</thead>
 					<tbody>
 						<tr ng-repeat="pipl in pipls">
 							<td>{{pipl.ID}}</td>
 							<td>{{pipl.ONAME}}</td>
-							<td><a href="#">-</a></td>
+							<td><a href="#">x</a></td>
 						</tr>
 					</tbody>
 				</table>
