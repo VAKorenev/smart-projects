@@ -19,14 +19,16 @@ projectApp.config(['$routeProvider', function($routeProvider){
 	});
 }]);
 
-projectApp.controller('organizationCtrl',['$scope', function($scope){
+projectApp.controller('organizationCtrl',['$scope','dataFctrl', function($scope, dataFctrl){
 
+	$scope.dataFctrl = dataFctrl;
 	$scope.message = 'Организация';
 	console.log("Url", $scope.message);
 }]);
 
-projectApp.controller('mapCtrl',['$scope', function($scope){
+projectApp.controller('mapCtrl',['$scope','dataFctrl', function($scope, dataFctrl){
 
+	$scope.dataFctrl = dataFctrl;
 	$scope.message = 'Карта';
 	console.log("Url", $scope.message);
 }]);
