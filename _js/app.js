@@ -1,6 +1,38 @@
 'use strict';
 
-var projectApp = angular.module('projectApp',[]);
+var projectApp = angular.module('projectApp',['ngRoute']);
+
+/*Блок отображения div'а областей изменения данных*/
+
+projectApp.config(['$routeProvider', function($routeProvider){
+	$routeProvider.
+	when('/organization', {
+		templateUrl: 'organization.html',
+		controller: 'organizationCtrl'
+	}).
+	when('/map', {
+		templateUrl: 'map.html',
+		controller: 'mapCtrl'
+	}).
+	otherwise({
+		redirectTo: '/'
+	});
+}]);
+
+projectApp.controller('organizationCtrl',['$scope','dataFctrl', function($scope, dataFctrl){
+
+	$scope.dataFctrl = dataFctrl;
+	$scope.message = 'Организация';
+	console.log("Url", $scope.message);
+}]);
+
+projectApp.controller('mapCtrl',['$scope','dataFctrl', function($scope, dataFctrl){
+
+	$scope.dataFctrl = dataFctrl;
+	$scope.message = 'Карта';
+	console.log("Url", $scope.message);
+}]);
+/*Конец блока отображения областей изменения данных*/
 
 /*Блок таблица - перечень проектов*/
 projectApp.controller('AllProjectsCtrl',['$scope','$http','dataFctrl', function($scope,$http, dataFctrl){
@@ -77,6 +109,7 @@ projectApp.controller('piplsCtrl',['$scope', '$http', 'dataFctrl', function($sco
 	});
 }]);
 /*Конец блока отображения сотрудников учавствующих в проекте*/
+
 /*Блок фабрика для обмена данными между контролами*/
 projectApp.factory('dataFctrl',function(){
 	return {
