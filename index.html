@@ -15,28 +15,28 @@
 	<div class="all-projects" ng-controller="AllProjectsCtrl" ng-show="dataFctrl.visible">
  		<table>
 			<thead>
-				<th ng-click="sort('id')">ID</th>
+				<th ng-click="sort('ID')">ID</th>
 				<th>Код проекта</th>
 				<th>Номер заявки</th>
-				<th ng-click="sort('firma')">ЮЛ</th>
-				<th ng-click="sort('addr')">Адрес</th>
-				<th>Доход</th>
-				<th>Затраты</th>
-				<th ng-click="sort('name')">РП</th>
+				<th ng-click="sort('ORG')">ЮЛ</th>
+				<th ng-click="sort('ADDR')">Адрес</th>
+				<th ng-click="sort('TOTAL')">Оборудование и расходные материалы, руб</th>
+				<th ng-click="sort('WORK_TOTAL')">Стоимость работ, руб.</th>
+				<th ng-click="sort('name')">Тип проекта</th>
 			</thead>
 			<tbody>
 			<tr>
 				<td colspan=8><input class="search-input"	type="text" ng-model="searchString" /></td>
 			</tr>
-			<tr ng-repeat="project in resultProjects = (projects | orderBy:sortField:reverse | filter:searchString)" ng-click="projectView(project.id);">
-					<td>{{project.id}}</td>
+			<tr ng-repeat="project in resultProjects = (projects | orderBy:sortField:reverse | filter:searchString)" ng-click="projectView(project.ID);">
+					<td>{{project.ID}}</td>
+					<td>{{project.NAME}}</td>
 					<td>Отсутствует</td>
-					<td>Отсутствует</td>
-					<td>{{project.firma}}</td>
-					<td>{{project.addr}}</td>
-					<td>0</td>
-					<td>0</td>
-					<td>{{project.name}}</td>
+					<td>{{project.ORG}}</td>
+					<td>{{project.ADDR}}</td>
+					<td>{{project.TOTAL}}</td>
+					<td>{{project.WORK_TOTAL}}</td>
+					<td>{{project.TYPE_OF_PROJECT}}</td>
 				</tr>
 				<tr>
 					<td colspan=7>Общее количество проектов:</td>
@@ -49,18 +49,18 @@
 		<div ng-controller="projectCtrl" ng-show="!dataFctrl.visible">
 			<div class="project-detail">
 				<table class="detail" width=100%>
-					<tr><td colspan="4" class="caption"><ul><li>Детализация проекта: #{{project[0].id}}</li><li class="close" alt="Закрыть (Esq)" ng-click="projectView();">x</li></td></tr>
-					<tr><td><i>Документ основание</i></td><td>АА-327</td><td><i>Внутренний номер проекта</i></td><td>{{project[0].id}}</td></tr>
+					<tr><td colspan="4" class="caption"><ul><li>Детализация проекта: #{{dataFctrl.project.ID}}</li><li class="close" alt="Закрыть (Esq)" ng-click="projectView();">x</li></td></tr>
+					<tr><td><i>Документ основание</i></td><td>{{dataFctrl.project.ID_IN}}</td><td><i>Внутренний номер проекта</i></td><td>{{dataFctrl.project.ID}}</td></tr>
 					<tr><td colspan=4><b>Информация о клиенте</b></td></tr>
-					<tr><td><i>Юр. лицо</i></td><td><a href="#organization">{{project[0].firma}}</a></td><td><i>Адрес</i></td><td><a href="#map">{{project[0].addr}}</a></td></tr>
+					<tr><td><i>Юр. лицо</i></td><td><a href="#organization">{{dataFctrl.project.ORG}}</a></td><td><i>Адрес</i></td><td><a href="#map">{{dataFctrl.project.ADDR}}</a></td></tr>
 					<tr><td><i>Объем услуг</i></td><td colspan=3>- КПД 10Мб<a href="#" class="close">Изменить</a></tr>
 					<tr><td><i>Инсталляция, руб.</i></td><td><a href="#">{{project[0].install}}</a></td><td><i>Абонентская плата, руб.</i></td><td><a href="#">{{project[0].abon}}</a></td></tr>
 					<tr><td colspan=4><b>Аренда ресурсов</b></td></tr>
 					<tr><td><i><i>Оператор</i></i></td><td><a href="#">Мегафон</a></td><td><i>Объект аренды</i></td><td><a href="#">КПД 10Мб</a></td></tr>
 					<tr><td><i>Инсталляция, руб.</i></td><td><a href="#">{{project[0].arenda_install}}</a></td><td><i>Абонентская плата, руб.</i></td><td><a href="#">{{project[0].arenda_abon}}</a></td></tr>
 					<tr><td colspan=4><b>Операционные затраты</b></td></tr>
-					<tr><td><i>Оборудование и материалы, руб.</i></td><td><a href="#">{{project[0].material_price}}</a></td><td><i>Работы, руб.</i></td><td><a href="#">{{project[0].work_price}}</a></td></tr>
-					<tr><td colspan=4><b>Комментарии по пректу: <a href="map.html" class="close">См. комментарии</a></b></td></tr>
+					<tr><td><i>Оборудование и материалы, руб.</i></td><td>{{dataFctrl.project.TOTAL}}</td><td><i>Работы, руб.</i></td><td>{{dataFctrl.project.WORK_TOTAL}}</td></tr>
+					<tr><td colspan=4><b>Комментарии по пректу: <a href="#comments" class="close">См. комментарии</a></b></td></tr>
 				</table>
 			</div>
 			<div class="materials" ng-controller="materialsCtrl">
@@ -71,10 +71,13 @@
 						<th>Уд.</th>
 					</thead>
 					<tbody>
-						<tr ng-repeat="material in materials">
+						<tr ng-repeat="material in dataFctrl.materials">
 							<td>{{material.NAME}}</td>
 							<td>{{material.COST}}</td>
 							<td><a href="#">x</a></td>
+						</tr>
+						<tr>
+							<td colspan="3" align="right"><a href="#materials">+ Добавить позицию</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -87,16 +90,19 @@
 						<th>Уд.</th>
 					</thead>
 					<tbody>
-						<tr ng-repeat="work in works">
+						<tr ng-repeat="work in dataFctrl.works">
 							<td>{{work.NAME}}</td>
 							<td>{{work.COST}}</td>
 							<td><a href="#">x</a></td>
+						</tr>
+						<tr>
+							<td colspan="3" align="right"><a href="#works">+ Добавить позицию</a></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 			<div class="pipl" ng-controller="piplsCtrl">
-				<table wifth=100%>
+				<table width=100%>
 					<thead>
 						<th>№</th>
 						<th>Фамилия</th>
@@ -108,21 +114,13 @@
 							<td>{{pipl.ONAME}}</td>
 							<td><a href="#">x</a></td>
 						</tr>
+						<tr>
+							<td colspan="3" align="right"><a href="#pipls">+ Добавить позицию</a></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
 			<div class="workflow" ng-view></div>
-			
-				<script type="text/ng-template" id="organization.html">
-					<h2>Изменяем данные организации</h2>
-					<input type="text">{{message}}
-				</script>
-				
-				<script type="text/ng-template" id="map.html">
-					<h2>Отображаем карту с объектом</h2>
-					{{message}}
-				</script>
-		
 		</div>
 	</div>
 </main>
