@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table width=100%>
+		<thead>
+			<th>Наименование</th>
+			<th>Кол-во</th>
+			<th>Стоимость, руб.</th>
+			<th>Итого, руб.</th>
+			<th>Уд.</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="material in dataFctrl.materials">
+				<td>{{material.NAME}}</td>
+				<td>{{material.COST}}</td>
+				<td>{{material.COST}}</td>
+				<td>{{material.COST}}</td>
+				<td><a href="#">x</a></td>
+			</tr>
+			<tr>
+				<td colspan="5" align="right"><a href="#materials">+ Добавить позицию</a></td>
+			</tr>
+		</tbody>
+	</table>
+	
+</body>
+</html>

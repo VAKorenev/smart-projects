@@ -6,8 +6,8 @@
 
 		"host": "project.smart.net",
 		"username": "project",  // or null for anonymous login
-		"password": "dfkcblfkd",
-		"path": "/",
+		"password": "Zaq12wsx^",
+		"path": "/_ang/",
 
 		"upload_on_save": true, // set *false* if you do not want to upload on save!
 		"passive": false,

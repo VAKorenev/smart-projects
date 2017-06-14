@@ -31,7 +31,7 @@ projectApp.config(['$routeProvider', function($routeProvider){
 		controller: 'commentsViewCtrl'
 	}).
 	otherwise({
-		redirectTo: '/'
+		redirectTo: '/comments'
 	});
 }]);
 
@@ -51,20 +51,73 @@ projectApp.controller('mapViewCtrl',['$scope','dataFctrl', function($scope, data
 
 projectApp.controller('materialsViewCtrl',['$scope','$http', 'dataFctrl', function($scope, $http, dataFctrl){
 	$scope.dataFctrl = dataFctrl;
+	
+	$scope.addMaterialsToProject = function(id, name, cost){
+		$http(
+			{
+				method: 'POST',
+				url: '_php/put_materials.php', 
+				data: {
+					pID: $scope.dataFctrl.project.ID,
+					prID: id
+				}
+			})
+		.then(function(response){
+			// $scope.dataFctrl.project = response.data;
+			if (response.data === "true") {
+				// console.log("Data:", response.data);
+				$scope.dataFctrl.materials.push({
+					'ID': id,
+					'NAME': name,
+					'COST': cost,
+					'UNIT': 1,
+					'TOTAL': cost
+				});
+			}
+		});
+		$scope.getProjectMaterials($scope.dataFctrl.project.ID);
+	};
+
 	$http.get('_php/get_materials_price.php')
 	.then(function(response){
 		$scope.materialsPrice = response.data;
 		// console.log("Data:", response.data);
 	});
+
 }]);
 
 projectApp.controller('worksViewCtrl',['$scope','$http', 'dataFctrl', function($scope, $http, dataFctrl){
 	$scope.dataFctrl = dataFctrl;
-		$http.get('_php/get_works_price.php')
+	$scope.addWorkToProject = function(id, name, cost){
+		$http(
+			{
+				method: 'POST',
+				url: '_php/put_work.php', 
+				data: {
+					pID: $scope.dataFctrl.project.ID,
+					prID: id
+				}
+			})
 		.then(function(response){
-			$scope.worksPrice = response.data;
-			 // console.log("Data:", response.data);
+			// $scope.dataFctrl.project = response.data;
+			if (response.data === "true") {
+				// console.log("Data:", response.data);
+				$scope.dataFctrl.works.push({
+					'ID': id,
+					'NAME': name,
+					'COST': cost,
+					'UNIT': 1,
+					'TOTAL': cost
+				});
+			}
 		});
+		// console.log("line 77, addWorkToProject, ID: ", id);
+	};
+	$http.get('_php/get_works_price.php')
+	.then(function(response){
+		$scope.worksPrice = response.data;
+		 // console.log("Data:", response.data);
+	});
 }]);
 
 projectApp.controller('piplsViewCtrl',['$scope','$http', 'dataFctrl', function($scope, $http, dataFctrl){
@@ -78,6 +131,9 @@ projectApp.controller('piplsViewCtrl',['$scope','$http', 'dataFctrl', function($
 
 projectApp.controller('commentsViewCtrl',['$scope','$http', 'dataFctrl', function($scope, $http, dataFctrl){
 	$scope.dataFctrl = dataFctrl;
+	$scope.AddMaterials = function(id, idMaterials, Name){
+		$scope.dataFctrl.materials
+	}
 }]);
 /*Конец блока отображения областей изменения данных*/
 
@@ -182,33 +238,49 @@ projectApp.controller('projectCtrl',['$scope', '$http', 'dataFctrl', function($s
 projectApp.controller('materialsCtrl',['$scope', '$http', 'dataFctrl', function($scope, $http, dataFctrl){
 	$scope.dataFctrl = dataFctrl;
 	$scope.materials = $scope.dataFctrl.materials;
+	
+	$scope.deleteMaterial = function(id){
+		$http(
+			{
+				method: 'POST',
+				url: '_php/del_material.php', 
+				data: {
+					ID: id
+				}
+			})
+		.then(function(response){
+			// $scope.dataFctrl.project = response.data;
+				console.log("Data:", response.data);
+			if (response.data === "true") {
+				// console.log("Data:", response.data);
+			}
+		});
+		console.log("deleteMaterial: ", id);
+	};
+
 }]);
 /* Конец блока Отображение расходников и материалов для проекта*/
 /*Блок отображения работ по проекту*/
 projectApp.controller('worksCtrl',['$scope', '$http', 'dataFctrl', function($scope, $http, dataFctrl){
+	
 	$scope.dataFctrl = dataFctrl;
-	$http.get('_data/works.data.json')
-	.then(function(response){
-		$scope.works = response.data;
-		// console.log("Data works:", response.data);
-	});
+
+	$scope.changeNumber = function(id){
+		console.log("198 line, ID: ",id)
+	};
 }]);
 /*Конец блока отображения работ по проекту*/
 /*Блок отображения сотрудников учавствующих в проекте*/
 projectApp.controller('piplsCtrl',['$scope', '$http', 'dataFctrl', function($scope, $http, dataFctrl){
 	$scope.dataFctrl = dataFctrl;
-	$http.get('_data/project.pipls.data.json')
-	.then(function(response){
-		$scope.pipls = response.data;
-		// console.log("Data works:", response.data);
-	});
 }]);
 /*Конец блока отображения сотрудников учавствующих в проекте*/
 
 /*Блок фабрика для обмена данными между контролами*/
-projectApp.factory('dataFctrl',function(){
+projectApp.factory('dataFctrl',['$http',function($http){
+
 	return {
 		visible: true
 	};
-});
+}]);
 /*Конец блока фабрика для обмена данными между контролами*/
