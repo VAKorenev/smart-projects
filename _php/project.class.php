@@ -60,13 +60,6 @@ class Projects {
         return isset($user_arr) ? $user_arr : array();
     }
 
-    function insertNewComments($param) {
-//        echo $this->sql->parse('addNewComments', $param);
-        if (!$this->mysqlid->query($this->sql->parse('addNewComments', $param))) {
-            echo "Ошибка: (" . $this->mysqlid->errno . ") " . $this->mysqlid->error;
-        }
-    }
-
     function getProjectMsg($param) {
 
         $result = $this->mysqlid->query($this->sql->parse('getComments', $param));
@@ -108,11 +101,19 @@ class Projects {
         if (!$this->mysqlid->query($this->sql->parse('insertWorkPosition', $param))) {
             echo "Ошибка: (" . $this->mysqlid->errno . ") " . $this->mysqlid->error;
         }
+        return true;
     }
 
-    function insertEquipmentPosition($param) {
+    function insertMaterialPosition($param) {
+        if (!$this->mysqlid->query($this->sql->parse('insertMaterialPosition', $param))) {
+            echo "Ошибка: (" . $this->mysqlid->errno . ") " . $this->mysqlid->error;
+        }
+        return true;
+    }
 
-        if (!$this->mysqlid->query($this->sql->parse('insertEquipmentPosition', $param))) {
+    function insertNewComments($param) {
+//        echo $this->sql->parse('addNewComments', $param);
+        if (!$this->mysqlid->query($this->sql->parse('addNewComments', $param))) {
             echo "Ошибка: (" . $this->mysqlid->errno . ") " . $this->mysqlid->error;
         }
     }
@@ -163,8 +164,8 @@ class Projects {
         return isset($user_arr) ? $user_arr : array();
     }
 
-    function deleteEquipment($param) {
-        if (!$this->mysqlid->query($this->sql->parse('deleteEquipment', $param))) {
+    function deleteMaterial($param) {
+        if (!$this->mysqlid->query($this->sql->parse('deleteMaterial', $param))) {
             echo "Ошибка: (" . $this->mysqlid->errno . ") " . $this->mysqlid->error;
         }
     }

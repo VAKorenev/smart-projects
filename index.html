@@ -2,18 +2,19 @@
 <html lang="en" ng-app="projectApp">
 <head>
 	<meta charset="UTF-8">
-	<title>Отдел развития [проекты]</title>
+	<title>Отдел развития [проекты!]</title>
 	<script src="_lib/angular.min.js"></script>
 	<script src="_lib/angular-route.min.js"></script>
 	<script src="_js/app.js"></script>
 	<link rel="stylesheet" href="_css/defaultt.css">
+	<link rel="stylesheet" href="_lib/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<div class="top-menu">
 		
 	</div>
 	<div class="all-projects" ng-controller="AllProjectsCtrl" ng-show="dataFctrl.visible">
- 		<table>
+		<table>
 			<thead>
 				<th ng-click="sort('ID')">ID</th>
 				<th>Код проекта</th>
@@ -25,10 +26,10 @@
 				<th ng-click="sort('name')">Тип проекта</th>
 			</thead>
 			<tbody>
-			<tr>
-				<td colspan=8><input class="search-input"	type="text" ng-model="searchString" /></td>
-			</tr>
-			<tr ng-repeat="project in resultProjects = (projects | orderBy:sortField:reverse | filter:searchString)" ng-click="projectView(project.ID);">
+				<tr>
+					<td colspan=8><input class="search-input"	type="text" ng-model="searchString" /></td>
+				</tr>
+				<tr ng-repeat="project in resultProjects = (projects | orderBy:sortField:reverse | filter:searchString)" ng-click="projectView(project.ID);">
 					<td>{{project.ID}}</td>
 					<td>{{project.NAME}}</td>
 					<td>Отсутствует</td>
@@ -44,7 +45,7 @@
 				</tr>
 			</tbody>
 		</table>		
-        </div>
+	</div>
 	<main>
 		<div ng-controller="projectCtrl" ng-show="!dataFctrl.visible">
 			<div class="project-detail">
@@ -67,17 +68,21 @@
 				<table width=100%>
 					<thead>
 						<th>Наименование</th>
+						<th>Кол-во</th>
 						<th>Стоимость, руб.</th>
+						<th>Итого, руб.</th>
 						<th>Уд.</th>
 					</thead>
 					<tbody>
 						<tr ng-repeat="material in dataFctrl.materials">
 							<td>{{material.NAME}}</td>
+							<td><a href="#">{{material.UNIT}}</a></td>
 							<td>{{material.COST}}</td>
-							<td><a href="#">x</a></td>
+							<td>{{material.TOTAL}}</td>
+							<td><i class="fa fa-trash-o fa-lg" aria-hidden="true" ng-click="deleteMaterial(material.ID);"></i></td>
 						</tr>
 						<tr>
-							<td colspan="3" align="right"><a href="#materials">+ Добавить позицию</a></td>
+							<td colspan="5" align="right"><a href="#materials">+ Добавить позицию</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -86,17 +91,21 @@
 				<table width=100%>
 					<thead>
 						<th>Наименование</th>
+						<th>Количество</th>
 						<th>Стоимость, руб.</th>
+						<th>Итого, руб.</th>
 						<th>Уд.</th>
 					</thead>
 					<tbody>
 						<tr ng-repeat="work in dataFctrl.works">
 							<td>{{work.NAME}}</td>
+							<td><a href="#" ng-click="changeNumber(work.ID);">{{work.UNIT}}</a></td>
 							<td>{{work.COST}}</td>
-							<td><a href="#">x</a></td>
+							<td>{{work.TOTAL}}</td>
+							<td><i class="fa fa-trash-o fa-lg" aria-hidden="true" ng-click="deleteWork(material.ID);"></i></td>
 						</tr>
 						<tr>
-							<td colspan="3" align="right"><a href="#works">+ Добавить позицию</a></td>
+							<td colspan="5" align="right"><a href="#works">+ Добавить позицию</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -122,6 +131,6 @@
 			</div>
 			<div class="workflow" ng-view></div>
 		</div>
-        </main>
+	</main>
 </body>
 </html>

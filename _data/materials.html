@@ -1,10 +1,12 @@
 <table width=100%>
 	<thead>
+		<th>№</th>
 		<th>Наименование</th>
 		<th>Стоимость, руб.</th>
 		</thead>
 	<tbody>
-		<tr ng-repeat="material in materialsPrice">
+		<tr ng-repeat="material in materialsPrice" ng-click="addMaterialsToProject(material.ID,material.NAME,material.COST)">
+			<td>{{material.ID}}</td>
 			<td>{{material.NAME}}</td>
 			<td>{{material.COST}}</td>
 		</tr>

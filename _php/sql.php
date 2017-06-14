@@ -40,7 +40,7 @@ class SQL {
 
   'insertWorkPosition' => 'INSERT INTO project_price (PROJECT_ID, PRICE_ID, REAL_UNIT, REAL_PRICE) VALUES ([@pID],[@prID], 1, 0)',
 
-  'insertEquipmentPosition' => 'INSERT INTO project_equipment (PROJECT_ID, PRICE_ID, REAL_UNIT, REAL_PRICE) VALUES ([@pID], [@prID], 1, 0)',        
+  'insertMaterialPosition' => 'INSERT INTO project_equipment (PROJECT_ID, PRICE_ID, REAL_UNIT, REAL_PRICE) VALUES ([@pID], [@prID], 1, 0)',        
 
   'updatePosition' => 'UPDATE project_price SET REAL_UNIT = [@NUM] where ID = [@pID]',
 
@@ -48,7 +48,7 @@ class SQL {
 
   'getProjectEquipment' => 'select pp.ID as ID, e.NAME as NAME, pp.REAL_UNIT as UNIT, e.COST as COST, pp.REAL_UNIT * e.COST as TOTAL from project_equipment pp, equipment e where pp.PROJECT_ID = [@ID] and pp.PRICE_ID = e.ID ORDER BY DPUT',
   'getEquipment' => 'select ID, NAME, COST from equipment',
-  'deleteEquipment' => 'delete from project_equipment where id = [@ID]',
+  'deleteMaterial' => 'delete from project_equipment where id = [@ID]',
   'deleteWork' => 'delete from project_price where id = [@ID]',
   'updateOrganizationName' => "update projects set org = '[@VAL]' where ID = [@ID]",
   'updateProjectName' => "update projects set name = '[@VAL]' where ID = [@ID]",
